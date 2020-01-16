@@ -1,0 +1,201 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETCoreApp,Version=v3.0": {
+      "NetCoreAudio/1.5.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/NetCoreAudio.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/NetCoreAudio.dll": {}
+        }
+      },
+      "Phidget22.NET/1.5.20191113": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp2.0/Phidget22.NET.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/Phidget22.NET.dll": {}
+        },
+        "build": {
+          "build/Phidget22.NET.props": {}
+        }
+      }
+    },
+    ".NETCoreApp,Version=v3.0/linux-arm": {
+      "NetCoreAudio/1.5.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/NetCoreAudio.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/NetCoreAudio.dll": {}
+        }
+      },
+      "Phidget22.NET/1.5.20191113": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp2.0/Phidget22.NET.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/Phidget22.NET.dll": {}
+        },
+        "build": {
+          "build/Phidget22.NET.props": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "NetCoreAudio/1.5.0": {
+      "sha512": "m1mMm/R5Uuf3HAVn5woSmlZHX/M47hLZ1R1NL+iY36I9om9/85irdNQPoSFPDMtsccFOm7iQr+pNTvU+UClceQ==",
+      "type": "package",
+      "path": "netcoreaudio/1.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/NetCoreAudio.dll",
+        "netcoreaudio.1.5.0.nupkg.sha512",
+        "netcoreaudio.nuspec"
+      ]
+    },
+    "Phidget22.NET/1.5.20191113": {
+      "sha512": "9mUJyBv79GC91BMekwKMDpLHKz3qtJoT+AbTmXF2hFK8ryeMCKj8YgQzKjceOBRyR1eWm6sjiXD2ZkgFY0rtsw==",
+      "type": "package",
+      "path": "phidget22.net/1.5.20191113",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "NativeDlls/x64/phidget22.dll",
+        "NativeDlls/x86/phidget22.dll",
+        "build/Phidget22.NET.props",
+        "lib/net20/Phidget22.NET.dll",
+        "lib/net20/Phidget22.NET.pdb",
+        "lib/net20/Phidget22.NET.xml",
+        "lib/net40/Phidget22.NET.dll",
+        "lib/net40/Phidget22.NET.pdb",
+        "lib/net40/Phidget22.NET.xml",
+        "lib/net45/Phidget22.NET.dll",
+        "lib/net45/Phidget22.NET.pdb",
+        "lib/net45/Phidget22.NET.xml",
+        "lib/net46/Phidget22.NET.dll",
+        "lib/net46/Phidget22.NET.pdb",
+        "lib/net46/Phidget22.NET.xml",
+        "lib/netcoreapp1.0/Phidget22.NET.deps.json",
+        "lib/netcoreapp1.0/Phidget22.NET.dll",
+        "lib/netcoreapp1.0/Phidget22.NET.pdb",
+        "lib/netcoreapp1.0/Phidget22.NET.xml",
+        "lib/netcoreapp2.0/Phidget22.NET.deps.json",
+        "lib/netcoreapp2.0/Phidget22.NET.dll",
+        "lib/netcoreapp2.0/Phidget22.NET.pdb",
+        "lib/netcoreapp2.0/Phidget22.NET.xml",
+        "lib/netstandard1.3/Phidget22.NET.deps.json",
+        "lib/netstandard1.3/Phidget22.NET.dll",
+        "lib/netstandard1.3/Phidget22.NET.pdb",
+        "lib/netstandard1.3/Phidget22.NET.xml",
+        "lib/netstandard2.0/Phidget22.NET.deps.json",
+        "lib/netstandard2.0/Phidget22.NET.dll",
+        "lib/netstandard2.0/Phidget22.NET.pdb",
+        "lib/netstandard2.0/Phidget22.NET.xml",
+        "phidget22.net.1.5.20191113.nupkg.sha512",
+        "phidget22.net.nuspec"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETCoreApp,Version=v3.0": [
+      "NetCoreAudio >= 1.5.0",
+      "Phidget22.NET >= 1.5.20191113"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\Victor\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\Victor\\Documents\\test_phidget\\test_phidget\\test_phidget\\test_phidget.csproj",
+      "projectName": "test_phidget",
+      "projectPath": "C:\\Users\\Victor\\Documents\\test_phidget\\test_phidget\\test_phidget\\test_phidget.csproj",
+      "packagesPath": "C:\\Users\\Victor\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Victor\\Documents\\test_phidget\\test_phidget\\test_phidget\\obj\\publish\\linux-arm\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\Victor\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "netcoreapp3.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "netcoreapp3.0": {
+        "dependencies": {
+          "NetCoreAudio": {
+            "target": "Package",
+            "version": "[1.5.0, )"
+          },
+          "Phidget22.NET": {
+            "target": "Package",
+            "version": "[1.5.20191113, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Runtime.linux-arm",
+            "version": "[3.0.0, 3.0.0]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.linux-arm",
+            "version": "[3.0.0, 3.0.0]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Runtime.linux-arm",
+            "version": "[3.0.0, 3.0.0]"
+          }
+        ],
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+      }
+    },
+    "runtimes": {
+      "linux-arm": {
+        "#import": []
+      }
+    }
+  }
+}

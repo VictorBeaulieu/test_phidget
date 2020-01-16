@@ -1,0 +1,16 @@
+C:\Users\Victor\Documents\test_phidget\test_phidget\test_phidget\bin\Debug\netcoreapp3.0\test_phidget.exe
+C:\Users\Victor\Documents\test_phidget\test_phidget\test_phidget\obj\Debug\netcoreapp3.0\test_phidget.csprojAssemblyReference.cache
+C:\Users\Victor\Documents\test_phidget\test_phidget\test_phidget\obj\Debug\netcoreapp3.0\test_phidget.AssemblyInfoInputs.cache
+C:\Users\Victor\Documents\test_phidget\test_phidget\test_phidget\obj\Debug\netcoreapp3.0\test_phidget.AssemblyInfo.cs
+C:\Users\Victor\Documents\test_phidget\test_phidget\test_phidget\bin\Debug\netcoreapp3.0\dll\x86\phidget22.dll
+C:\Users\Victor\Documents\test_phidget\test_phidget\test_phidget\bin\Debug\netcoreapp3.0\dll\x64\phidget22.dll
+C:\Users\Victor\Documents\test_phidget\test_phidget\test_phidget\bin\Debug\netcoreapp3.0\test_phidget.deps.json
+C:\Users\Victor\Documents\test_phidget\test_phidget\test_phidget\bin\Debug\netcoreapp3.0\test_phidget.runtimeconfig.json
+C:\Users\Victor\Documents\test_phidget\test_phidget\test_phidget\bin\Debug\netcoreapp3.0\test_phidget.runtimeconfig.dev.json
+C:\Users\Victor\Documents\test_phidget\test_phidget\test_phidget\bin\Debug\netcoreapp3.0\test_phidget.dll
+C:\Users\Victor\Documents\test_phidget\test_phidget\test_phidget\bin\Debug\netcoreapp3.0\test_phidget.pdb
+C:\Users\Victor\Documents\test_phidget\test_phidget\test_phidget\bin\Debug\netcoreapp3.0\Phidget22.NET.dll
+C:\Users\Victor\Documents\test_phidget\test_phidget\test_phidget\obj\Debug\netcoreapp3.0\test_phidget.csproj.CopyComplete
+C:\Users\Victor\Documents\test_phidget\test_phidget\test_phidget\obj\Debug\netcoreapp3.0\test_phidget.dll
+C:\Users\Victor\Documents\test_phidget\test_phidget\test_phidget\obj\Debug\netcoreapp3.0\test_phidget.pdb
+C:\Users\Victor\Documents\test_phidget\test_phidget\test_phidget\bin\Debug\netcoreapp3.0\NetCoreAudio.dll

@@ -1,0 +1,57 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.0": {
+      "test_phidget/1.0.0": {
+        "dependencies": {
+          "NetCoreAudio": "1.5.0",
+          "Phidget22.NET": "1.5.20191113"
+        },
+        "runtime": {
+          "test_phidget.dll": {}
+        }
+      },
+      "NetCoreAudio/1.5.0": {
+        "runtime": {
+          "lib/netstandard2.0/NetCoreAudio.dll": {
+            "assemblyVersion": "1.5.0.0",
+            "fileVersion": "1.5.0.0"
+          }
+        }
+      },
+      "Phidget22.NET/1.5.20191113": {
+        "runtime": {
+          "lib/netcoreapp2.0/Phidget22.NET.dll": {
+            "assemblyVersion": "1.1.5.10",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "test_phidget/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "NetCoreAudio/1.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-m1mMm/R5Uuf3HAVn5woSmlZHX/M47hLZ1R1NL+iY36I9om9/85irdNQPoSFPDMtsccFOm7iQr+pNTvU+UClceQ==",
+      "path": "netcoreaudio/1.5.0",
+      "hashPath": "netcoreaudio.1.5.0.nupkg.sha512"
+    },
+    "Phidget22.NET/1.5.20191113": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9mUJyBv79GC91BMekwKMDpLHKz3qtJoT+AbTmXF2hFK8ryeMCKj8YgQzKjceOBRyR1eWm6sjiXD2ZkgFY0rtsw==",
+      "path": "phidget22.net/1.5.20191113",
+      "hashPath": "phidget22.net.1.5.20191113.nupkg.sha512"
+    }
+  }
+}
