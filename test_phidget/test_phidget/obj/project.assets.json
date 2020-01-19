@@ -88,23 +88,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\VictorBeaulieu\\.nuget\\packages\\": {},
+    "C:\\Users\\Victor\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\VictorBeaulieu\\Documents\\test_phidget\\test_phidget\\test_phidget\\test_phidget.csproj",
+      "projectUniqueName": "C:\\Users\\Victor\\Documents\\test_phidget\\test_phidget\\test_phidget\\test_phidget.csproj",
       "projectName": "test_phidget",
-      "projectPath": "C:\\Users\\VictorBeaulieu\\Documents\\test_phidget\\test_phidget\\test_phidget\\test_phidget.csproj",
-      "packagesPath": "C:\\Users\\VictorBeaulieu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\VictorBeaulieu\\Documents\\test_phidget\\test_phidget\\test_phidget\\obj\\",
+      "projectPath": "C:\\Users\\Victor\\Documents\\test_phidget\\test_phidget\\test_phidget\\test_phidget.csproj",
+      "packagesPath": "C:\\Users\\Victor\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Victor\\Documents\\test_phidget\\test_phidget\\test_phidget\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\VictorBeaulieu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Victor\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

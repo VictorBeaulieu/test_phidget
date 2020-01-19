@@ -18,7 +18,6 @@ namespace test_phidget
         private const int FIRST_LED = 0;
         private const int LAST_LED = 8;
 
-
         /*
         private const string track = "C:\\Users\\Victor\\Documents\\test_phidget\\tracks\\test.wav";
         private const string track1 = "C:\\Users\\Victor\\Documents\\test_phidget\\tracks\\test1.wav";
@@ -28,9 +27,9 @@ namespace test_phidget
         private const string track5 = "C:\\Users\\Victor\\Documents\\test_phidget\\tracks\\test5.wav";
         private const string track6 = "C:\\Users\\Victor\\Documents\\test_phidget\\tracks\\test6.wav";
         private const string track7 = "C:\\Users\\Victor\\Documents\\test_phidget\\tracks\\test7.wav";
-
+        
         */
-
+        /*
         private const string track = "C:\\Users\\VictorBeaulieu\\Documents\\test_phidget\\tracks\\test.wav";
         private const string track1 = "C:\\Users\\VictorBeaulieu\\Documents\\test_phidget\\tracks\\test1.wav";
         private const string track2 = "C:\\Users\\VictorBeaulieu\\Documents\\test_phidget\\tracks\\test2.wav";
@@ -39,7 +38,8 @@ namespace test_phidget
         private const string track5 = "C:\\Users\\VictorBeaulieu\\Documents\\test_phidget\\tracks\\test5.wav";
         private const string track6 = "C:\\Users\\VictorBeaulieu\\Documents\\test_phidget\\tracks\\test6.wav";
         private const string track7 = "C:\\Users\\VictorBeaulieu\\Documents\\test_phidget\\tracks\\test7.wav";
-        /*
+        */
+        
         private const string track = "/home/pi/tracks/test.wav";
         private const string track1 = "/home/pi/tracks/test1.wav";
         private const string track2 = "/home/pi/tracks/test2.wav";
@@ -57,8 +57,8 @@ namespace test_phidget
         private const string track14 = "/home/pi/tracks/test14.wav";
         private const string track15 = "/home/pi/tracks/test15.wav";
 
-        */
-
+        
+        
         private static Int32 old_value = 0;
         private static int delay = 0;
         private static Int32 new_value = 0;
@@ -68,9 +68,11 @@ namespace test_phidget
         private static bool playable = true;
         private static bool short_touch = true;
         private static bool init = true;
+        private static bool run_main = false;
+
 
         private static List<DigitalOutput> output;
-
+        private static List<VoltageInput> input;
         private static void VoltageInput_VoltageChange(object sender, Phidget22.Events.VoltageInputVoltageChangeEventArgs e)
         {
 
@@ -132,16 +134,21 @@ namespace test_phidget
                     }
                     if (path.Length > 0) player.Play(path);
                 }
-            
-                    
-                    /*
-                    if (delay > 1000) player.Play("/home/pi/tracks/test.wav");
-                    else player.Play("/home/pi/tracks/test2.wav");*/
                 
 
             }
 
             
+        }
+
+        private static void play_task()
+        {
+            Player mPleyr = new Player();
+            while (true)
+            {
+                mPleyr.Play(track);
+                Thread.Sleep(2000);
+            }
         }
         private static void blink_task()
         {
@@ -179,58 +186,161 @@ namespace test_phidget
                 output[i].Close();
             }
         }
-
-       
-        static void Main(string[] args)
+        private static void touch_0_task()
         {
-                       
+            bool press = false;
+            bool release = false;
+            Int32 old_value = 0;
+            Int32 new_value = 0;
+            while (true)
+            {
+                double v=input[0].Voltage;
+                
+                new_value = Environment.TickCount & Int32.MaxValue;
+                if (v > 3)
+                {
+                    if (!press)
+                    {
+                        old_value = new_value;
+                        press = true;
+                        Console.WriteLine("thread chanel 0 voltage: " + v.ToString());
+                    }
+                    release = false;
+                }
+                else
+                {
+                    press = false;
+                    if(!release)
+                    {
+                        int tmp = new_value - old_value;
+                        Console.WriteLine("thread chanel 0 time : " + tmp.ToString());
+                        release = true;
+                        
+                        if (tmp < 1000) player.Play(track);
+                        else player.Play(track2);
+                    }
+                    
+                }
+                
+            }
+        }
+        private static void touch_1_task()
+        {
+            bool press = false;
+            bool release = false;
+            Int32 old_value = 0;
+            Int32 new_value = 0;
+            while (true)
+            {
+                double v = input[1].Voltage;
+
+                new_value = Environment.TickCount & Int32.MaxValue;
+                if (v > 3)
+                {
+                    if (!press)
+                    {
+                        old_value = new_value;
+                        press = true;
+                        Console.WriteLine("thread chanel 1 voltage: " + v.ToString());
+                    }
+                    release = false;
+                }
+                else
+                {
+                    press = false;
+                    if (!release)
+                    {
+                        int tmp = new_value - old_value;
+                        Console.WriteLine("thread chanel 1 time : " + tmp.ToString());
+                        release = true;
+                        
+                        if (tmp < 1000) player.Play(track4);
+                        else player.Play(track6);
+                    }
+
+                }
+
+            }
+        }
+
+        static int Main(string[] args)
+        {
+
+            int res = 0;
+
             player = new Player();
             output = new List<DigitalOutput>();
-            List<VoltageInput> input = new List<VoltageInput>();
+            input = new List<VoltageInput>();
+            
             for (int i = 0; i < 8; i++) input.Add(new VoltageInput());
+            for (int i = 0; i < 8; i++) output.Add(new DigitalOutput());
+
             for (int i = 0; i < 8; i++)
             {
                 input[i].Channel = i;
-                
-                input[i].VoltageChange += VoltageInput_VoltageChange;
-                input[i].Open(5000);
-                input[i].VoltageChangeTrigger = 3;
-            }
-            for (int i = 0; i < 8; i++) output.Add(new DigitalOutput());
-            for (int i = FIRST_LED; i < LAST_LED; i++)
-            {
                 output[i].Channel = i;
-                output[i].Open(5000);
+                //input[i].VoltageChange += VoltageInput_VoltageChange;                
             }
+            Console.Write("try connction...");
 
-            Thread blink_thread = new Thread(new ThreadStart(blink_task));
-            blink_thread.Start();
-
-
-
-            player.PlaybackFinished += OnPlaybackFinished;
-            Thread.Sleep(3000);
-            init = false;
-            Console.ReadLine();
-            Console.WriteLine("stop blink");
-
-
-            blink_run = false;          
-
-
-            Console.WriteLine("stop program");
-            for (int i = 0; i < 8; i++)
+            try
             {
-
-                input[i].Close();
+                for (int i = 0; i < 8; i++)
+                {
+                    output[i].Open(5000);
+                }
+                for (int i = 0; i < 8; i++)
+                {
+                    input[i].Open(5000);
+                    //input[i].VoltageChangeTrigger = 3;
+                }
+                run_main = true;
+                Console.WriteLine("succeed");
             }
+            catch (PhidgetException ex)
+            {
+                Console.WriteLine("failled");
+                Console.WriteLine(ex.ToString());
+                Console.WriteLine("");
+                Console.WriteLine("PhidgetException " + ex.ErrorCode + " (" + ex.Description + "): " + ex.Detail);
+                res = -1;
+                run_main = false;
+            }
+            
+            
+            if (run_main)
+            {
+                Thread.Sleep(1000);
+                Thread blink_thread = new Thread(new ThreadStart(blink_task));
+                blink_thread.Start();
+                Thread touch_0_thread = new Thread(new ThreadStart(touch_0_task));
+                touch_0_thread.Start();
+                Thread touch_1_thread = new Thread(new ThreadStart(touch_1_task));
+                touch_1_thread.Start();
+                while (true) ;
+
+
+                /*
+                Thread.Sleep(3000);
+                player.Play(track);
+                init = false;
+                while (true) ;
+                Console.WriteLine("stop blink");
+                */
+
+                blink_run = false;
+
+
+                Console.WriteLine("stop program");
+                for (int i = 0; i < 8; i++)
+                {
+
+                    input[i].Close();
+                }
+            }
+            return res;
         }
 
-        private static void OnPlaybackFinished(object sender, EventArgs e)
-        {
-            Console.WriteLine("Playback finished");
-            
-        }
 
 
     }
