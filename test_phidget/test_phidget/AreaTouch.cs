@@ -141,17 +141,20 @@ namespace test_phidget
             
 
         }
+
+
         public void check_area()
         {
             
             Console.Write("try to connect...");
             Player player = new Player();
-            player.Play(path);
+            
             try
             {
 
                 for (int i = 0; i < this.number; i++)
                 {
+                    input[i].Close();
                     input[i].Open(5000);
                     input[i].VoltageChangeTrigger = 3;
                 }
@@ -164,6 +167,7 @@ namespace test_phidget
                 Console.WriteLine(ex.ToString());
                 Console.WriteLine("");
                 Console.WriteLine("PhidgetException " + ex.ErrorCode + " (" + ex.Description + "): " + ex.Detail);
+                run =  false;
             }
 
             while (run)
@@ -173,6 +177,7 @@ namespace test_phidget
                 player.Play(path);
                 play_track = false;
             }
+            for (int i = 0; i < this.number; i++) input[i].Close();
         }
 
     }

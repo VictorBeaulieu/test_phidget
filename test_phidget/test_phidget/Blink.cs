@@ -20,7 +20,11 @@ namespace test_phidget
             output = new List<DigitalOutput>();
             for (int i = 0; i < 8; i++) output.Add(new DigitalOutput());
             for (int i = 0; i < 8; i++) output[i].Channel = i;
-            for (int i = 0; i < 8; i++) output[i].Open(5000);
+            for (int i = 0; i < 8; i++)
+            {
+                output[i].Close();
+                output[i].Open(5000);
+            }
         }
 
 
