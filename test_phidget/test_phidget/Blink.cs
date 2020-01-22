@@ -12,11 +12,23 @@ namespace test_phidget
         private const int FIRST_LED = 0;
         private const int LAST_LED = 8;
         private List<DigitalOutput> output;
-        private bool blink_run = true;
+        public bool blink_run = true;
 
         public Blink(int speed)
         {
-            this.SPEED = speed;
+            this.SPEED = speed;/*
+            output = new List<DigitalOutput>();
+            for (int i = 0; i < 8; i++) output.Add(new DigitalOutput());
+            for (int i = 0; i < 8; i++) output[i].Channel = i;
+            for (int i = 0; i < 8; i++)
+            {
+                output[i].Close();
+                output[i].Open(5000);
+            }*/
+        }
+
+        private void Open()
+        {
             output = new List<DigitalOutput>();
             for (int i = 0; i < 8; i++) output.Add(new DigitalOutput());
             for (int i = 0; i < 8; i++) output[i].Channel = i;
@@ -26,12 +38,17 @@ namespace test_phidget
                 output[i].Open(5000);
             }
         }
-
+        private void Close()
+        {
+            
+            for (int i = 0; i < 8; i++) output[i].Open(5000);
+        }
 
         public void k200_task()
         {
-            
-            
+
+            this.Open();
+            blink_run = true;
             while (blink_run)
             {
 
@@ -48,7 +65,38 @@ namespace test_phidget
                     Thread.Sleep(SPEED);
                 }
             }
-            for (int i = FIRST_LED; i < LAST_LED; i++) output[i].Close();
+            this.Close();
+        }
+
+        public void loading_task()
+        {
+
+            this.Open();
+            blink_run = true;
+            while (blink_run)
+            {
+
+                for (int i = FIRST_LED; i < LAST_LED; i++)
+                {
+                    output[i].DutyCycle = 1;
+                    Thread.Sleep(100);
+                }
+                for (int i = FIRST_LED; i < LAST_LED; i++) output[i].DutyCycle = 0;
+            }
+            for (int i = FIRST_LED; i < LAST_LED; i++) output[i].DutyCycle = 0;
+            Thread.Sleep(SPEED);
+            for (int i = FIRST_LED; i < LAST_LED; i++) output[i].DutyCycle = 1;
+            Thread.Sleep(SPEED);
+            for (int i = FIRST_LED; i < LAST_LED; i++) output[i].DutyCycle = 0;
+            Thread.Sleep(SPEED);
+            for (int i = FIRST_LED; i < LAST_LED; i++) output[i].DutyCycle = 1;
+            Thread.Sleep(SPEED);
+            for (int i = FIRST_LED; i < LAST_LED; i++) output[i].DutyCycle = 0;
+            Thread.Sleep(SPEED);
+            for (int i = FIRST_LED; i < LAST_LED; i++) output[i].DutyCycle = 1;
+            Thread.Sleep(SPEED);
+            for (int i = FIRST_LED; i < LAST_LED; i++) output[i].DutyCycle = 0;
+            this.Close();
         }
     }
 }

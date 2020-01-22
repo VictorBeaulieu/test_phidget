@@ -17,9 +17,12 @@ namespace test_phidget
         {
 
             int res = 0;
-
+            
             if (File.Exists("/media/usb/info.txt"))
             {
+                Blink blink = new Blink(20);
+                Thread blink_thread = new Thread(new ThreadStart(blink.loading_task));
+                blink_thread.Start();
                 mainRun = false;
                 string[] config = File.ReadAllLines("/media/usb/info.txt");
                 try
@@ -32,6 +35,7 @@ namespace test_phidget
                     {
                         File.Copy("/media/usb/tracks/track_long_" + (1 + i).ToString() + ".wav", "/home/pi/tracks/track_long_" + (1 + i).ToString() + ".wav", true);
                     }
+                    blink.blink_run = false;
                 }
                 catch (Exception)
                 {
@@ -42,9 +46,10 @@ namespace test_phidget
 
             }
             else mainRun = true;
-
-            if(mainRun)
+            
+            if (mainRun)
             {
+                
                 Blink blink = new Blink(20);
                 Thread blink_thread = new Thread(new ThreadStart(blink.k200_task));
                 blink_thread.Start();
@@ -56,7 +61,7 @@ namespace test_phidget
                 while (true) ;
             }          
 
-
+    
 
 
             Console.WriteLine("stop program");
