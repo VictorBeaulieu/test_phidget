@@ -32,7 +32,7 @@ namespace test_phidget
         private const string track7 = "C:\\Users\\VictorBeaulieu\\Documents\\test_phidget\\tracks\\test7.wav";
         */
         
-        private const string track = "/home/pi/tracks/test.wav";
+        
         private const string track1 = "/home/pi/tracks/test1.wav";
         private const string track2 = "/home/pi/tracks/test2.wav";
         private const string track3 = "/home/pi/tracks/test3.wav";
@@ -49,17 +49,22 @@ namespace test_phidget
         private const string track14 = "/home/pi/tracks/test14.wav";
         private const string track15 = "/home/pi/tracks/test15.wav";
 
+        private string[] short_track_array;
+        private string[] long_track_array;
+
         private int channel = 0;
         private List<VoltageInput> input;
         private bool run = true;
         private bool play_track = false;
         private double trigger = 3;
         private int number = 0;
+        private int short_touch = 0;
+        private int long_touch = 0;
         private Int32 old_value = 0;
         private Int32 new_value = 0;
         private string path="";
+        private int delay = 1000;
 
-       
         private void VoltageInput_VoltageChange(object sender, Phidget22.Events.VoltageInputVoltageChangeEventArgs e)
         {
             try
@@ -70,52 +75,70 @@ namespace test_phidget
                 if (evChannel.Voltage > trigger)
                 {
                     old_value = new_value;
-                    
-                    
+
+
                 }
                 else
                 {
                     int tmp = new_value - old_value;
                     Console.WriteLine("thread chanel " + evChannel.Channel + " time : " + tmp.ToString());
+
+                    /*
                     switch (evChannel.Channel)
                     {
                         case 0:
-                            if (tmp < 1000) path = track;
+                            if (tmp < delay) path = track1;
                             else path = track2;
                             break;
                         case 1:
-                            if (tmp < 1000) path = track3;
+                            if (tmp < delay) path = track3;
                             else path = track4;
                             break;
                         case 2:
-                            if (tmp < 1000) path = track4;
+                            if (tmp < delay) path = track4;
                             else path = track5;
                             break;
                         case 3:
-                            if (tmp < 1000) path = track6;
+                            if (tmp < delay) path = track6;
                             else path = track7;
                             break;
                         case 4:
-                            if (tmp < 1000) path = track8;
+                            if (tmp < delay) path = track8;
                             else path = track9;
                             break;
                         case 5:
-                            if (tmp < 1000) path = track10;
+                            if (tmp < delay) path = track10;
                             else path = track11;
                             break;
                         case 6:
-                            if (tmp < 1000) path = track12;
+                            if (tmp < delay) path = track12;
                             else path = track13;
                             break;
                         case 7:
-                            if (tmp < 1000) path = track14;
+                            if (tmp < delay) path = track14;
                             else path = track15;
                             break;
 
                         default:
                             break;
+                    }*/
+
+                    if (tmp < delay)
+                    {
+                        if (evChannel.Channel <= this.short_touch)
+                        {
+                            path = short_track_array[evChannel.Channel];
+                            play_track = true;
+                        }
                     }
-                    play_track = true;
+                    else
+                    {
+                        if (evChannel.Channel <= this.long_touch)
+                        {
+                            path = long_track_array[evChannel.Channel];
+                            play_track = true;
+                        }
+                    }
                 }
             }
             catch (PhidgetException ex)
@@ -131,6 +154,8 @@ namespace test_phidget
         public AreaTouch(int number)
         {
             this.number = number;
+            this.long_touch = number;
+            this.short_touch = number;
             input = new List<VoltageInput>();
             for (int i = 0; i < this.number; i++) input.Add(new VoltageInput());
             for (int i = 0; i < this.number; i++)
@@ -138,11 +163,26 @@ namespace test_phidget
                 input[i].Channel = i;
                 input[i].VoltageChange += VoltageInput_VoltageChange;
             }
-            
+            init_array();
 
         }
+        public AreaTouch(int short_touch, int long_touch)
+        {
+            this.short_touch = short_touch;
+            this.long_touch = long_touch;
+            if (this.short_touch > this.long_touch) this.number = this.short_touch;
+            else this.number = this.long_touch;
+            input = new List<VoltageInput>();
+            for (int i = 0; i < this.number; i++) input.Add(new VoltageInput());
+            for (int i = 0; i < this.number; i++)
+            {
+                input[i].Channel = i;
+                input[i].VoltageChange += VoltageInput_VoltageChange;
+            }
+            init_array();
 
 
+        }
         public void check_area()
         {
             
@@ -180,5 +220,17 @@ namespace test_phidget
             for (int i = 0; i < this.number; i++) input[i].Close();
         }
 
+        private void init_array()
+        {
+            
+            for (int i = 0; i < this.long_touch; i++)
+            {
+                this.long_track_array[i] = "/home/pi/tracks/track_long_" + i.ToString() + ".wav";
+            }
+            for (int i = 0; i < this.short_touch; i++)
+            {
+                this.short_track_array[i] = "/home/pi/tracks/track_short_" + i.ToString() + ".wav";
+            }
+        }
     }
 }
