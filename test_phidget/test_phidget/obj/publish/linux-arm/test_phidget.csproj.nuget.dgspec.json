@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Victor\\Documents\\test_phidget\\test_phidget\\test_phidget\\test_phidget.csproj": {}
+    "C:\\Users\\VictorBeaulieu\\Documents\\test_phidget\\test_phidget\\test_phidget\\test_phidget.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Victor\\Documents\\test_phidget\\test_phidget\\test_phidget\\test_phidget.csproj": {
+    "C:\\Users\\VictorBeaulieu\\Documents\\test_phidget\\test_phidget\\test_phidget\\test_phidget.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Victor\\Documents\\test_phidget\\test_phidget\\test_phidget\\test_phidget.csproj",
+        "projectUniqueName": "C:\\Users\\VictorBeaulieu\\Documents\\test_phidget\\test_phidget\\test_phidget\\test_phidget.csproj",
         "projectName": "test_phidget",
-        "projectPath": "C:\\Users\\Victor\\Documents\\test_phidget\\test_phidget\\test_phidget\\test_phidget.csproj",
-        "packagesPath": "C:\\Users\\Victor\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Victor\\Documents\\test_phidget\\test_phidget\\test_phidget\\obj\\publish\\linux-arm\\",
+        "projectPath": "C:\\Users\\VictorBeaulieu\\Documents\\test_phidget\\test_phidget\\test_phidget\\test_phidget.csproj",
+        "packagesPath": "C:\\Users\\VictorBeaulieu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\VictorBeaulieu\\Documents\\test_phidget\\test_phidget\\test_phidget\\obj\\publish\\linux-arm\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Victor\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\VictorBeaulieu\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

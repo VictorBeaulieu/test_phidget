@@ -3,59 +3,20 @@ using Phidget22;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace test_phidget
 {
     class AreaTouch
     {
 
-        /*
-        
-        private const string track = "C:\\Users\\Victor\\Documents\\test_phidget\\tracks\\test.wav";
-        private const string track1 = "C:\\Users\\Victor\\Documents\\test_phidget\\tracks\\test1.wav";
-        private const string track2 = "C:\\Users\\Victor\\Documents\\test_phidget\\tracks\\test2.wav";
-        private const string track3 = "C:\\Users\\Victor\\Documents\\test_phidget\\tracks\\test3.wav";
-        private const string track4 = "C:\\Users\\Victor\\Documents\\test_phidget\\tracks\\test4.wav";
-        private const string track5 = "C:\\Users\\Victor\\Documents\\test_phidget\\tracks\\test5.wav";
-        private const string track6 = "C:\\Users\\Victor\\Documents\\test_phidget\\tracks\\test6.wav";
-        private const string track7 = "C:\\Users\\Victor\\Documents\\test_phidget\\tracks\\test7.wav";
-        
-        */
-        /*
-        private const string track = "C:\\Users\\VictorBeaulieu\\Documents\\test_phidget\\tracks\\test.wav";
-        private const string track1 = "C:\\Users\\VictorBeaulieu\\Documents\\test_phidget\\tracks\\test1.wav";
-        private const string track2 = "C:\\Users\\VictorBeaulieu\\Documents\\test_phidget\\tracks\\test2.wav";
-        private const string track3 = "C:\\Users\\VictorBeaulieu\\Documents\\test_phidget\\tracks\\test3.wav";
-        private const string track4 = "C:\\Users\\VictorBeaulieu\\Documents\\test_phidget\\tracks\\test4.wav";
-        private const string track5 = "C:\\Users\\VictorBeaulieu\\Documents\\test_phidget\\tracks\\test5.wav";
-        private const string track6 = "C:\\Users\\VictorBeaulieu\\Documents\\test_phidget\\tracks\\test6.wav";
-        private const string track7 = "C:\\Users\\VictorBeaulieu\\Documents\\test_phidget\\tracks\\test7.wav";
-        */
-        
-        
-        private const string track1 = "/home/pi/tracks/test1.wav";
-        private const string track2 = "/home/pi/tracks/test2.wav";
-        private const string track3 = "/home/pi/tracks/test3.wav";
-        private const string track4 = "/home/pi/tracks/test4.wav";
-        private const string track5 = "/home/pi/tracks/test5.wav";
-        private const string track6 = "/home/pi/tracks/test6.wav";
-        private const string track7 = "/home/pi/tracks/test7.wav";
-        private const string track8 = "/home/pi/tracks/test8.wav";
-        private const string track9 = "/home/pi/tracks/test9.wav";
-        private const string track10 = "/home/pi/tracks/test10.wav";
-        private const string track11 = "/home/pi/tracks/test11.wav";
-        private const string track12 = "/home/pi/tracks/test12.wav";
-        private const string track13 = "/home/pi/tracks/test13.wav";
-        private const string track14 = "/home/pi/tracks/test14.wav";
-        private const string track15 = "/home/pi/tracks/test15.wav";
-
-        private string[] short_track_array;
-        private string[] long_track_array;
+        private List<string> short_track_array;
+        private List<string> long_track_array;
 
         private int channel = 0;
         private List<VoltageInput> input;
-        private bool run = true;
-        private bool play_track = false;
+        private bool run = false;
+        
         private double trigger = 3;
         private int number = 0;
         private int short_touch = 0;
@@ -64,9 +25,14 @@ namespace test_phidget
         private Int32 new_value = 0;
         private string path="";
         private int delay = 1000;
+        private Blink blink;
+        private bool init_done = false;
+        private readonly object playerLock = new object();
+        Player player = new Player();
 
         private void VoltageInput_VoltageChange(object sender, Phidget22.Events.VoltageInputVoltageChangeEventArgs e)
         {
+            
             try
             {
                 new_value = Environment.TickCount & Int32.MaxValue;
@@ -75,70 +41,39 @@ namespace test_phidget
                 if (evChannel.Voltage > trigger)
                 {
                     old_value = new_value;
-
-
+                    blink.TurnOn(evChannel.Channel);
                 }
                 else
                 {
                     int tmp = new_value - old_value;
                     Console.WriteLine("thread chanel " + evChannel.Channel + " time : " + tmp.ToString());
-
-                    /*
-                    switch (evChannel.Channel)
-                    {
-                        case 0:
-                            if (tmp < delay) path = track1;
-                            else path = track2;
-                            break;
-                        case 1:
-                            if (tmp < delay) path = track3;
-                            else path = track4;
-                            break;
-                        case 2:
-                            if (tmp < delay) path = track4;
-                            else path = track5;
-                            break;
-                        case 3:
-                            if (tmp < delay) path = track6;
-                            else path = track7;
-                            break;
-                        case 4:
-                            if (tmp < delay) path = track8;
-                            else path = track9;
-                            break;
-                        case 5:
-                            if (tmp < delay) path = track10;
-                            else path = track11;
-                            break;
-                        case 6:
-                            if (tmp < delay) path = track12;
-                            else path = track13;
-                            break;
-                        case 7:
-                            if (tmp < delay) path = track14;
-                            else path = track15;
-                            break;
-
-                        default:
-                            break;
-                    }*/
-
+                    blink.TurnOff(evChannel.Channel);
                     if (tmp < delay)
                     {
-                        if (evChannel.Channel <= this.short_touch)
+                        if (evChannel.Channel < this.short_touch)
                         {
                             path = short_track_array[evChannel.Channel];
-                            play_track = true;
+                            Console.WriteLine("short press");
                         }
                     }
                     else
                     {
-                        if (evChannel.Channel <= this.long_touch)
+                        if (evChannel.Channel < this.long_touch)
                         {
                             path = long_track_array[evChannel.Channel];
-                            play_track = true;
+                            Console.WriteLine("long press");
                         }
                     }
+                    if(run)
+                    {
+                        if (!player.Playing)
+                        {
+                            Console.WriteLine("player availlable");
+                            player.Play(path);
+                        }
+                        else Console.WriteLine("player not availlable");
+                    }
+                    
                 }
             }
             catch (PhidgetException ex)
@@ -168,10 +103,14 @@ namespace test_phidget
         }
         public AreaTouch(int short_touch, int long_touch)
         {
+            blink = new Blink(8);
             this.short_touch = short_touch;
             this.long_touch = long_touch;
             if (this.short_touch > this.long_touch) this.number = this.short_touch;
             else this.number = this.long_touch;
+            Console.WriteLine(number.ToString());
+
+
             input = new List<VoltageInput>();
             for (int i = 0; i < this.number; i++) input.Add(new VoltageInput());
             for (int i = 0; i < this.number; i++)
@@ -187,7 +126,7 @@ namespace test_phidget
         {
             
             Console.Write("try to connect...");
-            Player player = new Player();
+            
             
             try
             {
@@ -199,6 +138,7 @@ namespace test_phidget
                     input[i].VoltageChangeTrigger = 3;
                 }
                 Console.WriteLine("succeed");
+                init_done = true;
             }
             catch (PhidgetException ex)
             {
@@ -207,29 +147,30 @@ namespace test_phidget
                 Console.WriteLine(ex.ToString());
                 Console.WriteLine("");
                 Console.WriteLine("PhidgetException " + ex.ErrorCode + " (" + ex.Description + "): " + ex.Detail);
-                run =  false;
+                init_done =  false;
             }
-
-            while (run)
-            {
-                while (!play_track) ;
-
-                player.Play(path);
-                play_track = false;
-            }
+            Thread.Sleep(1000);
+            run = init_done;
+            while (run) ;
             for (int i = 0; i < this.number; i++) input[i].Close();
         }
 
         private void init_array()
         {
+
             
+
+            long_track_array = new List<string>();
+            short_track_array = new List<string>();
+
             for (int i = 0; i < this.long_touch; i++)
             {
-                this.long_track_array[i] = "/home/pi/tracks/track_long_" + i.ToString() + ".wav";
+                this.long_track_array.Add("/home/pi/tracks/track_long_" + i.ToString() + ".wav");
             }
+            
             for (int i = 0; i < this.short_touch; i++)
             {
-                this.short_track_array[i] = "/home/pi/tracks/track_short_" + i.ToString() + ".wav";
+                this.short_track_array.Add("/home/pi/tracks/track_short_" + i.ToString() + ".wav");
             }
         }
     }

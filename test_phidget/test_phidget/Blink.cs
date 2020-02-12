@@ -9,22 +9,22 @@ namespace test_phidget
     class Blink
     {
         private int SPEED = 30;
-        private const int FIRST_LED = 0;
-        private const int LAST_LED = 8;
+        private int FIRST_LED = 0;
+        private int LAST_LED = 8;
+        private int number_led = 0;
         private List<DigitalOutput> output;
         public bool blink_run = true;
 
-        public Blink(int speed)
+        public Blink(int speed, int first_led, int last_led)
         {
-            this.SPEED = speed;/*
-            output = new List<DigitalOutput>();
-            for (int i = 0; i < 8; i++) output.Add(new DigitalOutput());
-            for (int i = 0; i < 8; i++) output[i].Channel = i;
-            for (int i = 0; i < 8; i++)
-            {
-                output[i].Close();
-                output[i].Open(5000);
-            }*/
+            this.FIRST_LED = first_led;
+            this.LAST_LED = last_led;
+            this.SPEED = speed;
+        }
+        public Blink(int number_led)
+        {
+            this.number_led = number_led;
+            this.Open(number_led);
         }
 
         private void Open()
@@ -38,10 +38,36 @@ namespace test_phidget
                 output[i].Open(5000);
             }
         }
+        private void Open(int number_led)
+        {
+            output = new List<DigitalOutput>();
+            for (int i = 0; i < number_led; i++) output.Add(new DigitalOutput());
+            for (int i = 0; i < number_led; i++) output[i].Channel = i;
+            for (int i = 0; i < number_led; i++)
+            {
+                output[i].Close();
+                output[i].Open(5000);
+            }
+        }
+        public void TurnOn(int number)
+        {
+            output[number].DutyCycle = 1;
+        }
+        public void TurnOff(int number)
+        {
+            output[number].DutyCycle = 0;
+        }
+
+
         private void Close()
         {
             
             for (int i = 0; i < 8; i++) output[i].Open(5000);
+        }
+        private void Close(int number_led)
+        {
+
+            for (int i = 0; i < number_led; i++) output[i].Open(5000);
         }
 
         public void k200_task()
