@@ -31,3 +31,4 @@ C:\Users\VictorBeaulieu\Documents\test_phidget\test_phidget\test_phidget\obj\Deb
 C:\Users\VictorBeaulieu\Documents\test_phidget\test_phidget\test_phidget\obj\Debug\netcoreapp3.0\test_phidget.csproj.CopyComplete
 C:\Users\VictorBeaulieu\Documents\test_phidget\test_phidget\test_phidget\obj\Debug\netcoreapp3.0\test_phidget.dll
 C:\Users\VictorBeaulieu\Documents\test_phidget\test_phidget\test_phidget\obj\Debug\netcoreapp3.0\test_phidget.pdb
+C:\Users\VictorBeaulieu\Documents\test_phidget\test_phidget\test_phidget\obj\Debug\netcoreapp3.0\test_phidget.genruntimeconfig.cache

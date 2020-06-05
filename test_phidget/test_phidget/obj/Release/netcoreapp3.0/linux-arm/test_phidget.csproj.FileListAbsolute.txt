@@ -402,3 +402,4 @@ C:\Users\VictorBeaulieu\Documents\test_phidget\test_phidget\test_phidget\obj\Rel
 C:\Users\VictorBeaulieu\Documents\test_phidget\test_phidget\test_phidget\obj\Release\netcoreapp3.0\linux-arm\test_phidget.dll
 C:\Users\VictorBeaulieu\Documents\test_phidget\test_phidget\test_phidget\obj\Release\netcoreapp3.0\linux-arm\test_phidget.pdb
 C:\Users\VictorBeaulieu\Documents\test_phidget\test_phidget\test_phidget\obj\Release\netcoreapp3.0\linux-arm\test_phidget.csprojAssemblyReference.cache
+C:\Users\VictorBeaulieu\Documents\test_phidget\test_phidget\test_phidget\obj\Release\netcoreapp3.0\linux-arm\test_phidget.genruntimeconfig.cache

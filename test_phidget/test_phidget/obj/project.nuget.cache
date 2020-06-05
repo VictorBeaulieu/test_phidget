@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "U/b2YXDYhPGcYogkn73KbbtJlvKRF6xZham9ioZPGgVhgCzHiH4gzDL17EK6RDtf88jI3lrwZcYtm3M5dGGoKg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\VictorBeaulieu\\Documents\\test_phidget\\test_phidget\\test_phidget\\test_phidget.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\VictorBeaulieu\\.nuget\\packages\\netcoreaudio\\1.5.0\\netcoreaudio.1.5.0.nupkg.sha512",
+    "C:\\Users\\VictorBeaulieu\\.nuget\\packages\\phidget22.net\\1.5.20191113\\phidget22.net.1.5.20191113.nupkg.sha512",
+    "C:\\Users\\VictorBeaulieu\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.0.1\\microsoft.aspnetcore.app.ref.3.0.1.nupkg.sha512",
+    "C:\\Users\\VictorBeaulieu\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.0.3\\microsoft.netcore.app.host.win-x64.3.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
